@@ -14,11 +14,24 @@ string? inputThird = Console.ReadLine();
 
 if (inputFirst != null && inputSecond != null && inputThird != null)
 {
+// лобовое решение
     int inputNumberOne = int.Parse(inputFirst);
     int inputNumberTwo = int.Parse(inputSecond);
     int inputNumberThree = int.Parse(inputThird);
     int max = inputNumberOne;
     if (inputNumberTwo > max) max = inputNumberTwo;
     if (inputNumberThree > max) max = inputNumberThree;
-    Console.Write(max);
+    Console.WriteLine("По классике: " + max);
+
+// через Math.Max (в классе Max много методов, в т.ч. и Min)
+    max = Math.Max(inputNumberOne, inputNumberTwo);
+    max = Math.Max(max, inputNumberThree);
+    Console.WriteLine("Через метод Math.Max: " + max);
+
+// через тернарный оператор. сначала проверяется условие (итог true/false), после знака ?
+// первым идёт значение при true, вторым при false 
+    max = inputNumberOne > inputNumberTwo ? inputNumberOne : inputNumberTwo;
+    max = max > inputNumberThree ? max : inputNumberThree;
+    Console.WriteLine("Через тернарный оператор: " + max);
+    
 }
