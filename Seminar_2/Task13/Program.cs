@@ -27,7 +27,7 @@ int GetData()
     string? inputString = "";
     while (!testDigits)
     {
-        Console.Write("Введите число: ");
+        Console.Write("Введите численное значение: ");
         inputString = Console.ReadLine();
         testDigits = DigitsOnly(inputString);
     }

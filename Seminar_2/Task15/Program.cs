@@ -1,6 +1,7 @@
 ﻿//HomeWork
 //№15 Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
 
+//проверка на ввод цифр из диапазона от 1 до 7
 bool NumberInInterval(string s)
 {
     // два варианта проверки на пустую строку    
@@ -15,14 +16,13 @@ bool NumberInInterval(string s)
     return true;
 }
 
-
 byte GetData()
 {
     bool testDigits = false;
     string? inputString = "";
     while (!testDigits)
     {
-        Console.Write("Введите цифру, обозначающую день недели:  ");
+        Console.Write("Введите цифру, обозначающую день недели: ");
         inputString = Console.ReadLine();
         if (NumberInInterval(inputString) && (inputString.Length == 1))
             testDigits = true;

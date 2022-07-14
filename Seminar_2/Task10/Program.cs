@@ -27,7 +27,7 @@ int GetData()
     string? inputString = "";
     while (!testDigits)
     {
-        Console.Write("Введите значение: ");
+        Console.Write("Введите численное значение: ");
         inputString = Console.ReadLine();
         testDigits = DigitsOnly(inputString);
     }
@@ -37,64 +37,72 @@ int GetData()
 // вариант 1. через деление деление на 10 без остатка и последующее нахождение остатка от деления на 10 
 void variant1()
 {
-    int inputNumber = Math.Abs(GetData());
-    if ((inputNumber < 100) || (inputNumber > 999))
+    bool correctInput = false;
+    while (!correctInput)
     {
-        Console.Clear();
-        Console.WriteLine("Введите трёхзначное число!!!");
-        variant1();
+        int inputNumber = Math.Abs(GetData());
+        if ((inputNumber < 100) || (inputNumber > 999))
+        {
+            Console.Clear();
+            Console.WriteLine("Введите трёхзначное число!!!");
+        }
+        else
+        {
+            correctInput = true;
+            int secondNumber = (inputNumber / 10) % 10;
+            Console.WriteLine("Вторая цифра вашего числа: " + secondNumber);
+        }
     }
-    else
-    {
-        int secondNumber = (inputNumber / 10) % 10;
-        Console.WriteLine("Вторая цифра вашего числа: " + secondNumber);
-    }
+
 }
 
 // вариант 2. через вычленение второго символа из строки
 void variant2()
 {
-    string? inputNumber = Console.ReadLine();
-    if (!String.IsNullOrEmpty(inputNumber))
+    bool correctInput = false;
+    while (!correctInput)
     {
-        string correctNumber = inputNumber;
-        // если число отрицательное, убираем знак '-'
-        if (correctNumber[0] == '-')
-            correctNumber = correctNumber.Remove(0, 1);
-        // убираем нули в начале (если они есть)
-        while (correctNumber[0] == '0')
+        string? inputNumber = Console.ReadLine();
+        if (!String.IsNullOrEmpty(inputNumber))
         {
-            correctNumber = correctNumber.Remove(0, 1);
-            if (correctNumber.Length == 0)
-                break;
-        }
-        if ((correctNumber.Length != 3) || (!DigitsOnly(correctNumber)))
-        {
-            Console.Clear();
-            Console.WriteLine("Введите трёхзначное число!!!");
-            variant2();
+            string correctNumber = inputNumber;
+            // если число отрицательное, убираем знак '-'
+            if (correctNumber[0] == '-')
+                correctNumber = correctNumber.Remove(0, 1);
+            // убираем нули в начале (если они есть)
+            while (correctNumber[0] == '0')
+            {
+                correctNumber = correctNumber.Remove(0, 1);
+                if (correctNumber.Length == 0)
+                    break;
+            }
+            if ((correctNumber.Length != 3) || (!DigitsOnly(correctNumber)))
+            {
+                Console.Clear();
+                Console.WriteLine("Введите трёхзначное число!!!");
+            }
+            else
+            {
+                correctInput = true;
+                char[] digits = correctNumber.ToCharArray();
+                Console.WriteLine("Вторая цифра вашего числа: " + digits[1]);
+            }
         }
         else
         {
-            char[] digits = correctNumber.ToCharArray();
-            Console.WriteLine("Вторая цифра вашего числа: " + digits[1]);
+            Console.Clear();
+            Console.WriteLine("Введите трёхзначное число!!!");
         }
-    }
-    else
-    {
-        Console.Clear();
-        Console.WriteLine("Введите трёхзначное число!!!");
-        variant2();
     }
 }
 
-Console.Clear();
+    Console.Clear();
 
-Console.WriteLine("Первый вариант.");
-variant1();
+    Console.WriteLine("Первый вариант.");
+    variant1();
 
-Console.WriteLine("Второй вариант.");
-variant2();
+    Console.WriteLine("Второй вариант.");
+    variant2();
 
 
 
