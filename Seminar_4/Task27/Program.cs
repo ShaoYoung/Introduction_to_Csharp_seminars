@@ -37,7 +37,7 @@ void VariantDiv(int number)
     Console.WriteLine($"Сумма цифр в числе: {result}");
 }
 
-
+//вариант с разделением строки на массив символов
 void VariantChar(string number)
 {
     int result = 0;
