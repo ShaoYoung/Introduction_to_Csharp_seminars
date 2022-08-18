@@ -86,7 +86,7 @@ double[] InsertionSort(double[] array)
         //очередной ключ массива
         key = array[i];
         //сдвигаем массив вправо, пока ключ больше текущего элемента и ещё не начало массива. освобождаем место под ключ
-        while ((array[j] > key) & (j >= 0))
+        while ((j >= 0) && (array[j] > key))
         {
             array[j + 1] = array[j];
             j -= 1;
